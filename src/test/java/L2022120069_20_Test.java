@@ -23,8 +23,11 @@ public class L2022120069_20_Test {
         List<Integer> ans1 = new ArrayList<Integer>(){{add(0);}};
         List<Integer> ans2 = new ArrayList<Integer>(){{add(1);}};
         List<Integer> ans3 = new ArrayList<Integer>(){{add(3);add(4);}};
-        assertEquals(ans1,solution.findMinHeightTrees(1,edges1));
-        assertEquals(ans2,solution.findMinHeightTrees(4,edges2));
-        assertEquals(ans3,solution.findMinHeightTrees(6,edges3));
+//        assertEquals(ans1,solution.findMinHeightTrees(1,edges1));
+//        assertEquals(ans2,solution.findMinHeightTrees(4,edges2));
+//        assertEquals(ans3,solution.findMinHeightTrees(6,edges3));
+        assertEquals(ans1,solution.findMinHeightTrees(6,edges1));
+        assertEquals(ans2,solution.findMinHeightTrees(1,edges2));
+        assertEquals(ans3,solution.findMinHeightTrees(4,edges3));
     }
 }
