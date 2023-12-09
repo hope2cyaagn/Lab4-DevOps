@@ -18,3 +18,10 @@ jobs:
             restore-keys: ${{ runner.os }}-m2
       - name: Run tests with Maven
         run: mvn -B test --file pom.xml
+
+BASE_SHA: ${{ github.event.pull_request.base.sha }}
+  
+  git rev-list --count "$BASE_SHA..THE_PR" > tmp/count
+  cat tmp/count
+  git --no-pager diff "$BASE_SHA..THE_PR" --no-color --output tmp/change-diff
+  git --no-pager diff "$BASE_SHA..THE_PR" --name-only --output tmp/name-changed

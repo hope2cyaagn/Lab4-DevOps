@@ -1,0 +1,10 @@
+# Way 1
+- uses: actions/checkout@v2
+  with:
+    ref: pull/${{ github.event.pull_request.number }}/head
+    path: the_pr
+
+# Way 2
+- run: git fetch origin pull/$PR_NUM/head:THE_PR
+  env:
+    PR_NUM: ${{ github.event.pull_request.number }}
