@@ -1,12 +1,27 @@
-# Way 1
-- uses: actions/checkout@v2
-  with:
-    ref: pull/${{ github.event.pull_request.number }}/head
-    path: the_pr
-
-# Way 2
-- run: git fetch origin pull/$PR_NUM/head:THE_PR
-  env:
-    PR_NUM: ${{ github.event.pull_request.number }}
-
-  BASE_SHA: ${{ github.event.pull_request.base.sha }}
+name: autoMerge
+on:
+  pull_request:
+    types:
+      - labeled
+      - unlabeled
+      - synchronize
+      - opened
+      - edited
+      - ready_for_review
+      - reopened
+      - unlocked
+  pull_request_review:
+    types:
+      - submitted
+  status: {}
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: automerge
+        uses: "pascalgn/automerge-action@629929da409181990e4e638dcf84a74e11d3af66"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "automerge,!work in progress"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-title"
